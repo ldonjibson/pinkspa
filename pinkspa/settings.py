@@ -74,12 +74,16 @@ WSGI_APPLICATION = 'pinkspa.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/2.2/ref/settings/#databases
+# https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        # 'ENGINE': 'django.db.backends.postgresql',
+        # 'NAME': 'd4c4lhbioak854',
+        # 'USER': 'vstsouyiowubba',
+        # 'PASSWORD': '45fa77fde36b897881bbf9995f57e9cad0883520f63cad50f60ad2f1b890fd44',
+        # 'HOST': 'ec2-23-23-228-132.compute-1.amazonaws.com',
+        # 'PORT': '5432',
     }
 }
 
@@ -139,3 +143,8 @@ EMAIL_HOST_USER = '' # email id
 EMAIL_HOST_PASSWORD = '' #password
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
