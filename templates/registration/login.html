@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  {% include "partials/header.html" %}
+  <body>
+    {% include "partials/menu.html" %}
+    <!-- <div class="slider">
+    </div> -->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5 mx-auto">
+            <div id="msg"></div>
+            <div id="first">
+                <div class="myform form ">
+                    <div class="logo mb-2">
+                        <div class="col-md-12 text-center">
+                            <h5>Login</h5>
+                        </div>
+                    </div>
+                    <form name="login" id="loginForm">
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" name="username" class="form-control" id="login_username" aria-describedby="emailHelp" placeholder="Enter email">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" name="login_password" id="login_password" class="form-control" aria-describedby="emailHelp" placeholder="Enter Password">
+                        </div>
+                        <div class="col-md-12 text-center ">
+                            <button type="submit" id="submit_login" class="btn btn-block btn-large btn-primary tx-tfm" onclick="loginUser();">Login</button>
+                        </div>
+                        <div class="form-group">
+                            <p class="text-center"><a href="#" id="forget_password">Forgot password?</a></p>
+                        </div>
+                        <div class="col-md-12 ">
+                            <div class="login-or">
+                                <hr class="hr-or">
+                                <span class="span-or">or</span>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <p class="text-center">
+                                <a href="javascript:void();" class="google btn mybtn"><i class="fa fa-facebook">
+                                 </i> Signup using Facebook
+                                 </a>
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <p class="text-center">Don't have account? <a href="#" id="signup">Sign up here</a></p>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+            <div id="second">
+                <div class="myform form ">
+                    <div class="logo mb-2">
+                        <div class="col-md-12 text-center">
+                            <h5>Signup</h5>
+                        </div>
+                    </div>
+                    <form name="registration" id="registerForm">
+                        <div class="form-group">
+                            <label for="firstname">Username</label>
+                            <input type="text" name="username" class="form-control" id="username_signup" aria-describedby="emailHelp" placeholder="Enter Username">
+                        </div>
+                        <!-- <div class="form-group">
+                            <label for="lastname">Last Name</label>
+                            <input type="text" name="lastname" class="form-control" id="lastname" aria-describedby="emailHelp" placeholder="Enter Lastname">
+                        </div>
+                        <div class="form-group">
+                            <label for="firstname">First Name</label>
+                            <input type="text" name="firstname" class="form-control" id="firstname" aria-describedby="emailHelp" placeholder="Enter Firstname">
+                        </div> -->
+                        <div class="form-group">
+                            <label for="email">Email address</label>
+                            <input type="email" name="email" class="form-control" id="email_signup" aria-describedby="emailHelp" placeholder="Enter email">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" name="signup_password" id="password_signup" class="form-control" aria-describedby="emailHelp" placeholder="Enter Password">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Confirm Password</label>
+                            <input type="password" name="signup_password" id="confirm_password_signup" class="form-control" aria-describedby="emailHelp" placeholder="Enter Password">
+                        </div>
+                        <div class="col-md-12 text-center mb-3">
+                            <button type="submit" id="submit_register" class=" btn btn-block mybtn btn-primary tx-tfm" onclick="registerUser()">Get Started For Free</button>
+                        </div>
+                        <div class="col-md-12 ">
+                            <div class="form-group">
+                                <p class="text-center"><a href="#" id="signin">Already have an account?</a></p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div id="third">
+                <div class="myform form ">
+                    <div class="logo mb-2">
+                        <div class="col-md-12 text-center">
+                            <h5>Request password reset</h5>
+                        </div>
+                    </div>
+                    <form name="forgotpassword" id="forgotpassword">
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="text" name="email_forgot_password" class="form-control" id="email_forgot_password" aria-describedby="emailHelp" placeholder="Enter email">
+                        </div>
+                        <div class="col-md-12 text-center mb-2">
+                            <button type="submit" id="submit_forgot_password" class="btn btn-block btn-large btn-primary tx-tfm" onclick="resetPassword();">Reset Password</button>
+                        </div>
+                        <!-- <div class="form-group">
+                            <p class="text-center">Don't have account? <a href="#" id="signup">Sign up here</a></p>
+                            <p class="text-center">Don't have account? <a href="#" id="signup">Sign up here</a></p>
+                        </div> -->
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+    {% include 'partials/footer.html' %}
+    {% include 'partials/scripts.html' %}
+  </body>
+</html>

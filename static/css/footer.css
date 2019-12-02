@@ -1,0 +1,52 @@
+.footerd {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #FF4087;
+  color: white;
+  text-align: center;
+  margin-top:10px;
+  padding:20px;
+  /* padding: 10px;
+  text-align: center;
+  color: white; */
+}
+.footerm{
+  display: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+@media only screen and (max-width: 720px){
+  #footer-desktop{
+    display:none!important;
+  }
+  .footerm {
+    display:block;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #FF4087;
+    color: white;
+    text-align: center;
+  }
+}
