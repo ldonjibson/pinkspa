@@ -49,4 +49,7 @@
     color: white;
     text-align: center;
   }
+  .spacebottomform{
+    padding-bottom: 80px;
+  }
 }
