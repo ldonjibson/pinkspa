@@ -27,7 +27,7 @@ SECRET_KEY = '3*q255n2pn%8rtc4v(nq+^ck23wdz@*qnr85!xls*(f_m^h*zl'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'pinkspa.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv("db_name"),
+        'NAME': os.getenv('db_name'),
         'USER': os.getenv('db_user'),
         'PASSWORD': os.getenv('db_password'),
         'HOST': os.getenv('db_host'),
