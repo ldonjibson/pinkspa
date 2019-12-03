@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+from dotenv import load_dotenv
+load_dotenv()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,7 +27,7 @@ SECRET_KEY = '3*q255n2pn%8rtc4v(nq+^ck23wdz@*qnr85!xls*(f_m^h*zl'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -78,12 +80,12 @@ WSGI_APPLICATION = 'pinkspa.wsgi.application'
 
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.postgresql',
-        # 'NAME': 'd4c4lhbioak854',
-        # 'USER': 'vstsouyiowubba',
-        # 'PASSWORD': '45fa77fde36b897881bbf9995f57e9cad0883520f63cad50f60ad2f1b890fd44',
-        # 'HOST': 'ec2-23-23-228-132.compute-1.amazonaws.com',
-        # 'PORT': '5432',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('db_name'),
+        'USER': os.getenv('db_user'),
+        'PASSWORD': os.getenv('db_password'),
+        'HOST': os.getenv('db_host'),
+        'PORT': os.getenv('db_port'),
     }
 }
 
