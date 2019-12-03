@@ -8,10 +8,14 @@
     </div> -->
     <div class="container">
       <div class="row">
-      <p>Profile page</p>
+        <div class="col-12">
+          <p class="text-center">Profile page</p><br/>
+          <p class="text-center" id="profileResponse"></p>
+        </div>
       </div>
     </div>
     {% include 'partials/footer.html' %}
     {% include 'partials/scripts.html' %}
+    <script src="{% static 'js/profilePage.js' %}"></script>
   </body>
 </html>

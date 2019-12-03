@@ -34,7 +34,6 @@ $(function() {
       },
       password: {
         required: true,
-        
       }
     },
     messages: {
@@ -43,7 +42,6 @@ $(function() {
 
       password: {
         required: "Please enter password",
-      
       }
       
     },
@@ -145,7 +143,7 @@ function loginUser(){
           } else {
             console.log(data)
             localStorage.setItem("token", data.token)
-            location.href ='/'
+            location.href ='/profile'
           }
       });
   }
@@ -159,7 +157,14 @@ function registerUser(){
   var confirm_password = document.querySelector('#confirm_password_signup').value;
   var email = document.querySelector('#email_signup').value;
   // console.log(username, password)
-  if(username=='' || email=='' || password==''){
+  if(!isValidEmailAddress(email)){
+    document.querySelector('#submit_register').innerHTML='Get Started For Free';
+    document.querySelector('#msg').innerHTML='<p class="text-danger text-center">Enter your email</p>';
+    setTimeout(() => {
+      document.querySelector('#msg').innerHTML='';
+    }, 10000);
+  }
+  else if(username=='' || password==''){
     document.querySelector('#submit_register').innerHTML='Get Started For Free';
     document.querySelector('#msg').innerHTML='<p class="text-danger text-center">All fields are required</p>';
     setTimeout(() => {
@@ -192,7 +197,7 @@ function registerUser(){
           } else {
             console.log(data)
             localStorage.setItem("token", data.token)
-            location.href ='/login-register'
+            location.href ='/accounts'
           }
       });
   }
@@ -203,9 +208,9 @@ function resetPassword(){
   document.querySelector('#submit_forgot_password').innerHTML='<strong>Processing ...</strong>';
   var email = document.querySelector('#email_forgot_password').value;
   console.log(email)
-  if (email.length < 1) {
+  if (!isValidEmailAddress(email)) {
     document.querySelector('#submit_forgot_password').innerHTML='Reset Password';
-    document.querySelector('#msg').innerHTML='<p class="text-danger text-center">Invalid credentials</p>';
+    document.querySelector('#msg').innerHTML='<p class="text-danger text-center">Enter your email</p>';
     setTimeout(() => {
       document.querySelector('#msg').innerHTML='';
     }, 10000);
@@ -272,3 +277,30 @@ function changePassword(){
       });
   }
 }
+
+function userLogout(){
+  localStorage.removeItem('token');
+  $.ajax({
+    url: '/logout',
+    method: 'POST',
+    crossOrigin:true,
+  })
+  .done((data)=>{
+    if (data){
+      location.href='/accounts'
+    }
+  })
+}
+
+function checkToken(){
+  var token = localStorage.getItem('token');
+  console.log('token', token)
+  if (token === "undefined" || token === "null" || !token){
+    document.querySelector("#accounts").innerHTML = '<a class="nav-link" href="/accounts">Login/Register</a>'
+    document.querySelector("#mobileAccounts").innerHTML = '<a class="nav-link" href="/accounts">Login/Register</a>'
+  } else{
+    document.querySelector("#accounts").innerHTML = '<a class="nav-link" href="#" onclick="userLogout();">Logout</a>'
+    document.querySelector("#mobileAccounts").innerHTML = '<a class="nav-link" href="#" onclick="userLogout();">Logout</a>'
+  }
+}
+checkToken();

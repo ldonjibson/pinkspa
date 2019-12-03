@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate,logout, login
 import json, jwt, datetime
 # import models
 from django.contrib.auth.models import User 
@@ -8,7 +8,6 @@ from django.contrib.auth.hashers import make_password, check_password
 from django.views.decorators.csrf import csrf_exempt
 from django.template.loader import render_to_string
 from django.contrib.sites.shortcuts import get_current_site
-
 from .utils import get_or_none, SECRET_KEY,JwtDecode,random_string_generator
 
 def HomePage(request):
@@ -36,8 +35,9 @@ def LoginV(request):
     # password = check_password(password, )
     try:
       user = authenticate(username=username, password=password)
-      if user:
+      if user is not None:
         if user.is_active:
+          login(request,user)
           payload = {
             'id': user.id,
             'email': user.email
@@ -110,6 +110,11 @@ def RegisterV(request):
   return JsonResponse({"status":405, "Error": "Invalid Method"})
 
 @csrf_exempt
+def LogoutV(request):
+  logout(request)
+  return JsonResponse({'status':200, 'message':'logged out successfully'})
+
+@csrf_exempt
 def PasswordResetV(request):
   if request.method == 'POST':
     print(request.headers)
@@ -175,3 +180,20 @@ def ChangePassword(request):
       return JsonResponse({"status":400, 'Error': "Password reset not successful"})
     return JsonResponse({"status":400, "Error": "Invalid credentials"})
   return JsonResponse({"status":405, "Error": "Invalid Method"})
+
+@csrf_exempt
+def ProfileV(request):
+  decoded = JwtDecode(request)
+  if decoded != "permission denied":
+    print(decoded)
+    user = User.objects.get(pk=int(decoded['id']), email=decoded['email'])
+    return JsonResponse({"status":200, "details":{
+      'userid': decoded['id'],
+      'username': user.username,
+      'email': decoded['email'],
+      'firstname': user.first_name,
+      'lastname': user.last_name,
+    }})
+  else:
+    return JsonResponse({"status":403, "Error":"Unauthorized access"})
+  return JsonResponse({"status":403, "Error":"Unauthorized access"})

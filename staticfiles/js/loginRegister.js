@@ -143,7 +143,7 @@ function loginUser(){
           } else {
             console.log(data)
             localStorage.setItem("token", data.token)
-            location.href ='/'
+            location.href ='/profile'
           }
       });
   }
@@ -197,7 +197,7 @@ function registerUser(){
           } else {
             console.log(data)
             localStorage.setItem("token", data.token)
-            location.href ='/login-register'
+            location.href ='/accounts'
           }
       });
   }
@@ -277,3 +277,30 @@ function changePassword(){
       });
   }
 }
+
+function userLogout(){
+  localStorage.removeItem('token');
+  $.ajax({
+    url: '/logout',
+    method: 'POST',
+    crossOrigin:true,
+  })
+  .done((data)=>{
+    if (data){
+      location.href='/accounts'
+    }
+  })
+}
+
+function checkToken(){
+  var token = localStorage.getItem('token');
+  console.log('token', token)
+  if (token === "undefined" || token === "null" || !token){
+    document.querySelector("#accounts").innerHTML = '<a class="nav-link" href="/accounts">Login/Register</a>'
+    document.querySelector("#mobileAccounts").innerHTML = '<a class="nav-link" href="/accounts">Login/Register</a>'
+  } else{
+    document.querySelector("#accounts").innerHTML = '<a class="nav-link" href="#" onclick="userLogout();">Logout</a>'
+    document.querySelector("#mobileAccounts").innerHTML = '<a class="nav-link" href="#" onclick="userLogout();">Logout</a>'
+  }
+}
+checkToken();

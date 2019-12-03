@@ -9,9 +9,15 @@ def get_or_none(Model, value):
   except Exception as e:
     return None
 
-def JwtDecode(token):
-  decoded = jwt.decode(token, SECRET_KEY, algorithms='HS256')
-  return decoded
+def JwtDecode(request):
+  try:
+    print(request.headers)
+    token = request.headers['Authorization'].split(' ')[1]
+    decoded = jwt.decode(token, SECRET_KEY, algorithms='HS256')
+    return decoded
+  except Exception as e:
+    raise e
+    return "permission denied"
 
 def random_string_generator(size=10, chars=string.ascii_lowercase + string.digits):
     return ''.join(random.choice(chars) for _ in range(size))
