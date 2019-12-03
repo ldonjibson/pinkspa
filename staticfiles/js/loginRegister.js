@@ -159,7 +159,14 @@ function registerUser(){
   var confirm_password = document.querySelector('#confirm_password_signup').value;
   var email = document.querySelector('#email_signup').value;
   // console.log(username, password)
-  if (password !== confirm_password){
+  if(!username || !email || !password){
+    document.querySelector('#submit_register').innerHTML='Get Started For Free';
+    document.querySelector('#msg').innerHTML='<p class="text-danger text-center">All fields are required</p>';
+    setTimeout(() => {
+      document.querySelector('#msg').innerHTML='';
+    }, 10000);
+  }
+  else if (password !== confirm_password){
     document.querySelector('#submit_register').innerHTML='Get Started For Free';
     document.querySelector('#msg').innerHTML='<p class="text-danger text-center">Password mismatch</p>';
     setTimeout(() => {
