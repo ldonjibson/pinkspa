@@ -1,6 +1,6 @@
-import jwt, json, random, string
+import jwt, json, random, string, os
 
-SECRET_KEY = "pink site"
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 def get_or_none(Model, value):
   try:
