@@ -146,6 +146,11 @@ EMAIL_HOST_PASSWORD = '' #password
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
+#HTTPS
+SECURE_SSL_REDIRECT = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https
+
+
 try:
     from .local_settings import *
 except ImportError:
